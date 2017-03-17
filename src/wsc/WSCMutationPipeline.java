@@ -43,24 +43,9 @@ public class WSCMutationPipeline extends BreedingPipeline {
         for(int q=start;q<n+start;q++) {
         	SequenceVectorIndividual tree = (SequenceVectorIndividual)inds[q];
 
-        	double bestFitness = tree.fitness.fitness();
-        	Service[] bestNeighbour = tree.genome;
-
-        	Service[] neighbour = null;
-
-        	for (int i = 0; i < tree.genome.length; i++) {
-        		for (int j = i + 1; j < tree.genome.length; j++) {
-        			neighbour = Arrays.copyOf(tree.genome, tree.genome.length);
-        			swapServices(neighbour, i, j);
-
-        			// Calculate fitness, and update the best neighbour if necessary
-        			tree.calculateSequenceFitness(init.numLayers, init.endServ, neighbour, init, state, true);
-        			if (tree.fitness.fitness() > bestFitness)
-        				bestNeighbour = Arrays.copyOf(neighbour, tree.genome.length);
-        		}
-        	}
-            // Update the tree to contain the best genome found
-        	tree.genome = bestNeighbour;
+        	int indexA = init.random.nextInt(tree.genome.length);
+        	int indexB = init.random.nextInt(tree.genome.length);
+        	swapServices(tree.genome, indexA, indexB);
             tree.evaluated=false;
         }
         return n;

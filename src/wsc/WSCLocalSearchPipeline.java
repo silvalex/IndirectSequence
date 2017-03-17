@@ -7,7 +7,7 @@ import ec.EvolutionState;
 import ec.Individual;
 import ec.util.Parameter;
 
-public class WSCLinearMutationPipeline extends BreedingPipeline {
+public class WSCLocalSearchPipeline extends BreedingPipeline {
 
 	private static final long serialVersionUID = 1L;
 
